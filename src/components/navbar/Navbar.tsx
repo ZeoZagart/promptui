@@ -17,7 +17,7 @@ const Navbar = () => {
                             Search Prompts
                         </Button>
                     </Link>
-                    <Link to={'create-prompt'}>
+                    <Link to={'/create-prompt'}>
                         <Button
                             colorScheme={'teal'}
                             variant={'solid'}

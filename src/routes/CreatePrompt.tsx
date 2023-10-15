@@ -13,6 +13,9 @@ import {
     Tbody,
     Td,
     TableContainer,
+    Card,
+    CardHeader,
+    Heading,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 
@@ -54,16 +57,11 @@ const CreatePrompt = () => {
     }
 
     return (
-        <>
-            <HStack
-                border={2}
-                borderRadius={20}
-                borderStyle={'solid'}
-                borderColor={'teal'}
-                p={5}
-                margin={10}
-                alignItems={'baseline'}
-            >
+        <Card margin={10} p={8}>
+            <CardHeader>
+                <Heading size={"md"}>Enter your prompt</Heading>
+            </CardHeader>
+            <HStack alignItems={'baseline'}>
                 <VStack flexGrow={'1'}>
                     <Textarea
                         rows={10}
@@ -99,7 +97,7 @@ const CreatePrompt = () => {
 					//</List>*/}
                 </TableContainer>
             </HStack>
-        </>
+        </Card>
     )
 }
 
