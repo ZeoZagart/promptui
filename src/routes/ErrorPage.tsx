@@ -1,6 +1,6 @@
 import { Heading, Text } from '@chakra-ui/react'
 import { useRouteError } from 'react-router-dom'
-import { getError } from '../helpers/error'
+import { getError } from 'helpers/error'
 
 const ErrorPage = () => {
     const error = useRouteError()

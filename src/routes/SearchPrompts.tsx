@@ -5,8 +5,6 @@ import {
     Input,
     InputGroup,
     InputRightElement,
-    List,
-    ListItem,
     SimpleGrid,
 } from '@chakra-ui/react'
 import { FormEvent, useState } from 'react'
@@ -22,26 +20,31 @@ function SearchPrompts() {
     }
 
     return (
-        <Box margin={10} justifyItems={"center"}>
+        <Box margin={10} justifyItems={'center'}>
             <form onSubmit={search}>
-                <InputGroup >
+                <InputGroup>
                     <Input
                         placeholder="Search by..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <InputRightElement>
-                        <SearchIcon onClick={search}/>
+                        <SearchIcon onClick={search} />
                     </InputRightElement>
                 </InputGroup>
             </form>
-            <SimpleGrid margin={4} columns={[2, null, 5]} justifyContent={"space-between"} gap={4}>
+            <SimpleGrid
+                margin={4}
+                columns={[2, null, 5]}
+                justifyContent={'space-between'}
+                gap={4}
+            >
                 {searchResults.map((result) => (
                     <Card
-                        maxW={"md"}
-                        direction={"column"}
-                        justifySelf={"center"}
-                        variant={"outline"}
+                        maxW={'md'}
+                        direction={'column'}
+                        justifySelf={'center'}
+                        variant={'outline'}
                     >
                         {result}
                     </Card>

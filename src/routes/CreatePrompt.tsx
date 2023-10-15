@@ -4,7 +4,6 @@ import {
     Button,
     VStack,
     Textarea,
-    Box,
     Table,
     TableCaption,
     Thead,
@@ -59,7 +58,7 @@ const CreatePrompt = () => {
     return (
         <Card margin={10} p={8}>
             <CardHeader>
-                <Heading size={"md"}>Enter your prompt</Heading>
+                <Heading size={'md'}>Enter your prompt</Heading>
             </CardHeader>
             <HStack alignItems={'baseline'}>
                 <VStack flexGrow={'1'}>
