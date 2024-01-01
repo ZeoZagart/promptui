@@ -15,12 +15,14 @@ import {
     Card,
     CardHeader,
     Heading,
+    CardBody,
 } from '@chakra-ui/react'
+import { PromptParam } from 'model/prompts'
 import { useState } from 'react'
 
 const CreatePrompt = () => {
     const [prompt, setPrompt] = useState<string>()
-    const [params, setParams] = useState<string[]>([])
+    const [params, setParams] = useState<PromptParam[]>([])
     const [description, setDescription] = useState<string>('')
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -32,7 +34,9 @@ const CreatePrompt = () => {
         const regex = /{{.*?}}/g
         const matches = text.match(regex)
         if (matches) {
-            setParams(matches.map((match) => match.slice(2, -2)))
+            const paramNames = matches.map((match) => match.slice(2, -2))
+            const paramValues = 
+            setParams()
         } else {
             setParams([])
         }
@@ -55,47 +59,61 @@ const CreatePrompt = () => {
         )
     }
 
+    const submitPrompt = () => {
+        const data = {
+            prompt: prompt,
+            description: description,
+            params: params,
+        }
+        console.log(data)
+    }
+
     return (
         <Card margin={10} p={8}>
             <CardHeader>
                 <Heading size={'md'}>Enter your prompt</Heading>
             </CardHeader>
-            <HStack alignItems={'baseline'}>
-                <VStack flexGrow={'1'}>
-                    <Textarea
-                        rows={10}
-                        resize="vertical"
-                        placeholder="Prompt"
-                        value={prompt}
-                        onChange={handlePromptChange}
-                    />
-                    <Textarea
-                        rows={5}
-                        placeholder="Description"
-                        resize="horizontal"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </VStack>
-                <TableContainer>
-                    <Table>
-                        <TableCaption>Prompt parameters</TableCaption>
-                        <Thead>
-                            <Tr>
-                                <Th>Parameter</Th>
-                                <Th>Type</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {params.map((param) => typeSelector(param))}
-                        </Tbody>
-                    </Table>
-                    {/*//<FormLabel>Params</FormLabel>
-					//<List>
-					//	{params.map((param) => typeSelector(param))}
-					//</List>*/}
-                </TableContainer>
-            </HStack>
+            <CardBody>
+                <HStack alignItems={'baseline'}>
+                    <VStack flexGrow={'1'}>
+                        <Textarea
+                            rows={10}
+                            resize="vertical"
+                            placeholder="Prompt"
+                            value={prompt}
+                            onChange={handlePromptChange}
+                        />
+                        <Textarea
+                            rows={5}
+                            placeholder="Description"
+                            resize="horizontal"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </VStack>
+                    <TableContainer>
+                        <Table>
+                            <TableCaption>Prompt parameters</TableCaption>
+                            <Thead>
+                                <Tr>
+                                    <Th>Parameter</Th>
+                                    <Th>Type</Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {params.map((param) => typeSelector(param))}
+                            </Tbody>
+                        </Table>
+                        {/*//<FormLabel>Params</FormLabel>
+                        //<List>
+                        //	{params.map((param) => typeSelector(param))}
+                        //</List>*/}
+                    </TableContainer>
+                </HStack>
+                <Button onClick={submitPrompt}>
+                    Create
+                </Button>
+            </CardBody>
         </Card>
     )
 }
